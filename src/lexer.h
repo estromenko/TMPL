@@ -4,7 +4,6 @@
 #include <iostream>
 #include <string>
 
-
 enum TokenType {
     TokenIdentifier,
 
