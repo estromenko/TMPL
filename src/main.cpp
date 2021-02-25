@@ -22,7 +22,7 @@ int main(int argc, char** argv) {
         data[length++] = &ch;
     }
 
-    Lexer* lexer = new Lexer();
+    TMPL_PARSER::Lexer* lexer = new TMPL_PARSER::Lexer();
 
     fclose(fp);
     return 0;
