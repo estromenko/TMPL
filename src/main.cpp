@@ -11,7 +11,6 @@ int main(int argc, char **argv) {
 
     std::ifstream fin;
     fin.open(argv[1], std::ios::in);
-
     fin.seekg (0, std::ios::end);
     int64_t fin_size = fin.tellg() / sizeof(char);
 
@@ -26,16 +25,16 @@ int main(int argc, char **argv) {
     }
 
     fin.seekg(0);
-
-    char **data = (char**)malloc(sizeof(char));
+    
+    char **data = (char**) new char;
     char token[255];
 
-    fin >> token;
-    // доделать с этого момента
+    while (!fin.eof()) {
+        fin >> token;
+        data += *token;
+    }
 
     TMPL_PARSER::Lexer* lexer = new TMPL_PARSER::Lexer(data);
-
-    lexer -> next_token();
 
     fin.close();
 

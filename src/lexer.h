@@ -15,10 +15,10 @@ enum TokenType {
 
 class Token {
 public:
-    Token(TokenType token_type, char **value);
+    Token(TokenType token_type, char **data);
 private:
     TokenType token_type;
-    char **value;
+    char **data;
 };
 
 class Lexer {

@@ -19,7 +19,7 @@ TMPL_PARSER::Lexer::Lexer(char **data) {
 }
 
 // Token classes
-TMPL_PARSER::Token::Token(TMPL_PARSER::TokenType token_type = TokenEmpty, char **value = nullptr) {
+TMPL_PARSER::Token::Token(TMPL_PARSER::TokenType token_type = TokenEmpty, char **data = nullptr) {
     this -> token_type = token_type;
-    this -> value = value;
+    this -> data = data;
 }
