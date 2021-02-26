@@ -2,28 +2,24 @@
 
 #include <iostream>
 
-namespace TMPL_PARSER {
-
 // Lexer classes
-void Lexer::next() {
+void TMPL_PARSER::Lexer::next() {
     std::cout << "next\n";
 }
 
-void Lexer::next_token() {
+void TMPL_PARSER::Lexer::next_token() {
     std::cout << "next_token\n";
 }
 
-Lexer::Lexer(std::string data) {
+TMPL_PARSER::Lexer::Lexer(char **data) {
     this -> data = data;
     this -> index = 0;
-    this -> token = new Token();
+    this -> token = nullptr;
     this -> next();
 }
 
 // Token classes
-Token::Token(TokenType token_type = TokenEmpty, std::string value = "") {
+TMPL_PARSER::Token::Token(TMPL_PARSER::TokenType token_type = TokenEmpty, char **value = nullptr) {
     this -> token_type = token_type;
     this -> value = value;
-}
-
 }

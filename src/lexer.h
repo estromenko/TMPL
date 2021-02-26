@@ -15,20 +15,20 @@ enum TokenType {
 
 class Token {
 public:
-    Token(TokenType token_type, std::string value);
+    Token(TokenType token_type, char **value);
 private:
     TokenType token_type;
-    std::string value;
+    char **value;
 };
 
 class Lexer {
 public:
-    Lexer(std::string data);
+    Lexer(char **data);
 
     void next_token();
 private:
     uint64_t index;
-    std::string data;
+    char **data;
     Token *token;
     char *buffer;
 

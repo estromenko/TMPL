@@ -13,7 +13,7 @@ int main(int argc, char** argv) {
     if (fp == NULL) {
         std::cerr << "file empety";
         return 1;
-    }
+    } 
 
     char** data = (char**)malloc(sizeof(char));
     size_t length = 0;
@@ -22,8 +22,13 @@ int main(int argc, char** argv) {
         data[length++] = &ch;
     }
 
-    TMPL_PARSER::Lexer* lexer = new TMPL_PARSER::Lexer();
+    TMPL_PARSER::Lexer* lexer = new TMPL_PARSER::Lexer(data);
+
+    lexer->next_token();
+
+    free(data);
 
     fclose(fp);
+
     return 0;
 }
