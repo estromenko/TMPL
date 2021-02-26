@@ -1,4 +1,3 @@
-
 NAME=tmpl
 COMPILER=g++
 

@@ -11,7 +11,7 @@ int main(int argc, char** argv) {
 
     FILE* fp = fopen(argv[1], "r");
     if (fp == NULL) {
-        std::cerr << "file not found";
+        std::cerr << "file empety";
         return 1;
     }
 
