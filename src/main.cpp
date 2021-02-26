@@ -25,12 +25,13 @@ int main(int argc, char **argv) {
         return 3;
     }
 
+    fin.seekg(0);
+
     char **data = (char**)malloc(sizeof(char));
     char token[255];
 
     fin >> token;
-
-    std::cout << token;
+    // доделать с этого момента
 
     TMPL_PARSER::Lexer* lexer = new TMPL_PARSER::Lexer(data);
 
