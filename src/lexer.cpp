@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <ctype.h>
+#include "token.h"
 
 #define MAX_TOKEN_LENGTH 20
 
@@ -25,9 +26,13 @@ void TMPL_PARSER::Lexer::next_token() {
         while (isalpha(*this->buffer) || *this->buffer == '_') {
             token[index++] = *this->buffer;
             this->next();
+        } 
+        if (token == "def") {
+            this->token = new Token(TokenDef, token);
+        } else {
+            this->token = new Token(TokenIdentifier, token);
         }
 
-        this->token = new Token(TokenIdentifier, token);
     } else if (isdigit(token[0])) {
         while (isdigit(*this->buffer)) {
             token[index++] = *this->buffer;
@@ -46,10 +51,4 @@ TMPL_PARSER::Lexer::Lexer(char *data) {
     this->index = 0;
     this->token = new Token(TokenEmpty, nullptr);
     this->next();
-}
-
-// Token classes
-TMPL_PARSER::Token::Token(TMPL_PARSER::TokenType token_type, char *value) {
-    this->token_type = token_type;
-    this->value = value;
 }

@@ -1,25 +1,11 @@
 #ifndef TMPL_LEXER_H
 #define TMPL_LEXER_H
 
-#include<list>
-#include<string>
+#include <list>
+#include <string>
+#include "token.h"
 
 namespace TMPL_PARSER {
-
-enum TokenType {
-    TokenIdentifier,
-    TokenNumber,
-    TokenSeparator,
-    TokenEmpty
-};
-
-class Token {
-public:
-    Token(TokenType token_type, char *value);
-
-    TokenType token_type;
-    char *value;
-};
 
 class Lexer {
 public:
