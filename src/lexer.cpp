@@ -27,8 +27,8 @@ void TMPL_PARSER::Lexer::next_token() {
         }
 
         this->token = new Token(TokenIdentifier, token);
-    } else if (isnumber(token[0])) {
-        while (isnumber(*this->buffer)) {
+    } else if (isdigit(token[0])) {
+        while (isdigit(*this->buffer)) {
             token[index++] = *this->buffer;
             this->next();
         }
@@ -38,7 +38,6 @@ void TMPL_PARSER::Lexer::next_token() {
         this->token = new Token(TokenEmpty, nullptr);
     }
 
-    delete []token;
 }
 
 TMPL_PARSER::Lexer::Lexer(char *data) {
