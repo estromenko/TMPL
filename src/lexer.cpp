@@ -18,28 +18,30 @@ void TMPL_PARSER::Lexer::next_token() {
         this->next();
     }
 
-    char *token = new char[MAX_TOKEN_LENGTH];
+    char *c_token = new char[MAX_TOKEN_LENGTH];
     size_t index = 0;
-    token[index++] = *this->buffer;
+    c_token[index++] = *this->buffer;
     this->next();
-    if (isalpha(token[0]) || token[0] == '_') {
+    if (isalpha(c_token[0]) || c_token[0] == '_') {
         while (isalpha(*this->buffer) || *this->buffer == '_') {
-            token[index++] = *this->buffer;
+            c_token[index++] = *this->buffer;
             this->next();
         } 
-        if (token == "def") {
-            this->token = new Token(TokenDef, token);
+        if (c_token == "def") {
+            this->token = new Token(TokenDef, c_token);
+        } else if (c_token == "if") {
+            this->token = new Token(TokenIf, c_token);
         } else {
-            this->token = new Token(TokenIdentifier, token);
-        }
+            this->token = new Token(TokenIdentifier, c_token);
+        } 
 
-    } else if (isdigit(token[0])) {
+    } else if (isdigit(c_token[0])) {
         while (isdigit(*this->buffer)) {
-            token[index++] = *this->buffer;
+            c_token[index++] = *this->buffer;
             this->next();
         }
 
-        this->token = new Token(TokenNumber, token);
+        this->token = new Token(TokenNumber, c_token);
     } else {
         this->token = new Token(TokenEmpty, nullptr);
     }

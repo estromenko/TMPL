@@ -8,7 +8,8 @@ enum TokenType {
     TokenNumber,
     TokenSeparator,
     TokenEmpty,
-    TokenDef
+    TokenDef,
+    TokenIf
 };
 
 class Token {
