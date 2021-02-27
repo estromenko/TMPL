@@ -11,24 +11,35 @@ int main(int argc, char **argv) {
 
     std::ifstream fin;
     fin.open(argv[1], std::ios::in);
-    fin.seekg (0, std::ios::end);
-    int64_t fin_size = fin.tellg() / sizeof(char);
 
     if (!fin.is_open()) {
         std::cerr << "file can't be open";
         return 2;
     }
 
+    fin.seekg (0, std::ios::end);
+    int fin_size = fin.tellg() / sizeof(char);
+    fin.seekg (0);
     if (fin_size == 0) {
         std::cerr << "file is empety" << std::endl;
         return 3;
     }
 
-    // TODO костыль, заменить на данные из входного файла
-    std::string sdata("zxc zxc 123 asd");
-    char *cdata = (char*)sdata.c_str();
+    std::string s_data;
+    std::string word;
 
-    TMPL_PARSER::Lexer* lexer = new TMPL_PARSER::Lexer(cdata);
+    while (!fin.eof())
+    {
+        fin >> word;
+        s_data += " " + word;
+    }
+
+    std::cout << s_data << std::endl;
+    s_data += "\0";
+
+    char *c_data = (char*)s_data.c_str();
+
+    TMPL_PARSER::Lexer* lexer = new TMPL_PARSER::Lexer(c_data);
     lexer->next_token();
     while (lexer->token->token_type != TMPL_PARSER::TokenEmpty) {
         std::cout << lexer->token->value << "\t" << lexer->token->token_type << std::endl;
@@ -36,5 +47,6 @@ int main(int argc, char **argv) {
     }
 
     fin.close();
+
     return 0;
 }

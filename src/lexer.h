@@ -15,7 +15,7 @@ enum TokenType {
 
 class Token {
 public:
-    Token(TokenType token_type, char *data);
+    Token(TokenType token_type, char *value);
 
     TokenType token_type;
     char *value;
@@ -32,9 +32,7 @@ public:
 private:
     uint64_t index;
     char *data;
-
     char *buffer;
-
     void next();
 };
 

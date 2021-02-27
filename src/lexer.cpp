@@ -11,6 +11,7 @@ void TMPL_PARSER::Lexer::next() {
     this->buffer = &this->data[this->index++];
 }
 
+// This function create token
 void TMPL_PARSER::Lexer::next_token() {
     while (isspace(*this->buffer)) {
         this->next();
