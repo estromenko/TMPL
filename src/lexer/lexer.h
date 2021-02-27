@@ -5,7 +5,7 @@
 #include <string>
 #include "token.h"
 
-namespace TMPL_PARSER {
+namespace TMPL_LEXER {
 
 class Lexer {
 public:

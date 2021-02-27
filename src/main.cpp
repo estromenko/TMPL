@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 
-#include "lexer.h"
+#include "lexer/lexer.h"
 
 int main(int argc, char **argv) {
     if (argc < 2) {
@@ -36,9 +36,9 @@ int main(int argc, char **argv) {
 
     char *c_data = (char*)s_data.c_str();
 
-    TMPL_PARSER::Lexer* lexer = new TMPL_PARSER::Lexer(c_data);
+    TMPL_LEXER::Lexer* lexer = new TMPL_LEXER::Lexer(c_data);
     lexer->next_token();
-    while (lexer->token->token_type != TMPL_PARSER::TokenEmpty) {
+    while (lexer->token->token_type != TMPL_LEXER::TokenEmpty) {
         std::cout << lexer->token->value << "\t" << lexer->token->token_type << std::endl;
         lexer->next_token();
     }
