@@ -34,9 +34,6 @@ int main(int argc, char **argv) {
         s_data += " " + word;
     }
 
-    std::cout << s_data << std::endl;
-    s_data += "\0";
-
     char *c_data = (char*)s_data.c_str();
 
     TMPL_PARSER::Lexer* lexer = new TMPL_PARSER::Lexer(c_data);
