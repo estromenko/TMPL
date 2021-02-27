@@ -24,19 +24,17 @@ int main(int argc, char **argv) {
         return 3;
     }
 
-    fin.seekg(0);
-    
-    char **data = (char**) new char;
-    char token[255];
+    // TODO костыль, заменить на данные из входного файла
+    std::string sdata("zxc zxc 123 asd");
+    char *cdata = (char*)sdata.c_str();
 
-    while (!fin.eof()) {
-        fin >> token;
-        data += *token;
+    TMPL_PARSER::Lexer* lexer = new TMPL_PARSER::Lexer(cdata);
+    lexer->next_token();
+    while (lexer->token->token_type != TMPL_PARSER::TokenEmpty) {
+        std::cout << lexer->token->value << "\t" << lexer->token->token_type << std::endl;
+        lexer->next_token();
     }
 
-    TMPL_PARSER::Lexer* lexer = new TMPL_PARSER::Lexer(data);
-
     fin.close();
-
     return 0;
 }

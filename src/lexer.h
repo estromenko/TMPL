@@ -15,21 +15,24 @@ enum TokenType {
 
 class Token {
 public:
-    Token(TokenType token_type, char **data);
-private:
+    Token(TokenType token_type, char *data);
+
     TokenType token_type;
-    char **data;
+    char *value;
 };
 
 class Lexer {
 public:
-    Lexer(char **data);
+    Lexer(char *data);
+    Lexer();
+
+    Token *token;
 
     void next_token();
 private:
     uint64_t index;
-    char **data;
-    Token *token;
+    char *data;
+
     char *buffer;
 
     void next();
