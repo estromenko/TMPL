@@ -18,6 +18,12 @@ enum TokenType {
     TokenMinus,
     TokenMinusMinus,
     TokenMinusEqual,
+    TokenDivision,
+    TokenDivisionEqual,
+    TokenDivisionDivision,
+    TokenMultiplication,
+    TokenMultiplicationEqual,
+    TokenMultiplicationMultiplication,
     TokenSemicolumn,
     TokenLBracket,
     TokenRBracket,
@@ -28,6 +34,7 @@ enum TokenType {
     TokenColumn,
     TokenComma,
     TokenPoint,
+    TokenMod,
 
     TokenNumber,    
 

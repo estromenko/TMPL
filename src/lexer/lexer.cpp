@@ -24,6 +24,12 @@ const char *special_identifiers[] = {
     "-",
     "--",
     "-=",
+    "/",
+    "/=",
+    "//",
+    "*",
+    "*=",
+    "**",
     ";",
     "(",
     ")",
@@ -34,6 +40,7 @@ const char *special_identifiers[] = {
     ":",
     ",",
     ".",
+    "%",
 };
 
 
@@ -112,6 +119,32 @@ void TMPL_LEXER::Lexer::next_token() {
                 this->token = new Token(TokenMinus, c_token);
                 return;
             }
+            case '/': {
+                if (*this->buffer == '/') {
+                    c_token[index++] = *this->buffer;
+                    this->token = new Token(TokenDivisionDivision, c_token);
+                    return;
+                } else if (*this->buffer == '=') {
+                    c_token[index++] = *this->buffer;
+                    this->token = new Token(TokenDivisionEqual, c_token);
+                    return;
+                }
+                this->token = new Token(TokenDivision, c_token);
+                return;
+            }
+            case '*': {
+                if (*this->buffer == '*') {
+                    c_token[index++] = *this->buffer;
+                    this->token = new Token(TokenMultiplicationMultiplication, c_token);
+                    return;
+                } else if (*this->buffer == '=') {
+                    c_token[index++] = *this->buffer;
+                    this->token = new Token(TokenMultiplicationEqual, c_token);
+                    return;
+                }
+                this->token = new Token(TokenMultiplication, c_token);
+                return;
+            }
             default: {
                 for (size_t i = 0; i < TokenEmpty - TokenIdentifier; i++) {
                     if (strcmp(special_identifiers[i], c_token) == 0) {
@@ -123,7 +156,7 @@ void TMPL_LEXER::Lexer::next_token() {
         }
 
         this->token = new Token(TokenEmpty, nullptr);
-        std::cerr << "[DEBUG] Syntax error: unknown identifier (" << c_token << ")" << std::endl; // Instead of logger command
+        std::cerr << "\033[31m[DEBUG] Syntax error: unknown identifier (" << c_token << ")" << std::endl; // Instead of logger command
     }
 
 }

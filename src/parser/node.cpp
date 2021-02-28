@@ -3,11 +3,9 @@
 #include "../lexer/token.h"
 
 
-TMPL_PARSER::Node *TMPL_PARSER::Node::get_tree() {
-    return nullptr;
-}
-
-TMPL_PARSER::Node::Node(TMPL_LEXER::Token *token) {
+TMPL_PARSER::Node::Node(NodeType node_type, TMPL_LEXER::Token *token, Node *next = nullptr) {
+    this->node_type = node_type;
     this->token = token;
+    this->next = next;
 }
 

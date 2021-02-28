@@ -6,18 +6,17 @@
 namespace TMPL_PARSER{
 
 enum NodeType {
-
+    NodeRoot,
 };
 
 
 class Node {
 public:
-    Node(TMPL_LEXER::Token *token);
+    Node(NodeType node_type, TMPL_LEXER::Token *token, Node *next);
 
     TMPL_LEXER::Token *token;
+    NodeType node_type;
     Node *next;
-
-    Node* get_tree();
 };
 
 }
