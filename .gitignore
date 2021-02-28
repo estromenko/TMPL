@@ -1,3 +1,7 @@
 .idea
 
 tmpl
+
+.vscode
+
+settings.json
