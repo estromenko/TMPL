@@ -9,3 +9,7 @@ TMPL_PARSER::Node::Node(NodeType node_type, TMPL_LEXER::Token *token, Node *next
     this->next = next;
 }
 
+void TMPL_PARSER::Node::set_next_node(Node *next) {
+    this->next = next;
+}   
+
