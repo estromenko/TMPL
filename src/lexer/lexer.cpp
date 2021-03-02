@@ -41,6 +41,18 @@ const char *special_identifiers[] = {
     ",",
     ".",
     "%",
+    "<", //
+    "<=",
+    ">",
+    ">=",
+    "!",
+    "!=",
+    "&",
+    "&&",
+    "|",
+    "||",
+    "'",
+    "\"",
 };
 
 
@@ -51,6 +63,10 @@ void TMPL_LEXER::Lexer::next() {
 
 // This function create token
 void TMPL_LEXER::Lexer::next_token() {
+    if (*this->buffer == '\0') {
+        this->token = new Token(TokenEmpty, nullptr);
+        return;
+    }
     while (isspace(*this->buffer)) {
         this->next();
     }
@@ -143,6 +159,56 @@ void TMPL_LEXER::Lexer::next_token() {
                     return;
                 }
                 this->token = new Token(TokenMultiplication, c_token);
+                return;
+            }
+            case '<': {
+                if (*this->buffer == '=') {
+                    c_token[index++] = *this->buffer;
+                    this->token = new Token(TokenLessEqual, c_token);
+                    return;
+                } 
+
+                this->token = new Token(TokenLess, c_token);
+                return;
+            }
+            case '>': {
+                if (*this->buffer == '=') {
+                    c_token[index++] = *this->buffer;
+                    this->token = new Token(TokenGreaterEqual, c_token);
+                    return;
+                } 
+
+                this->token = new Token(TokenGreater, c_token);
+                return;
+            }
+            case '!': {
+                if (*this->buffer == '=') {
+                    c_token[index++] = *this->buffer;
+                    this->token = new Token(TokenNotEqual, c_token);
+                    return;
+                } 
+
+                this->token = new Token(TokenNot, c_token);
+                return;
+            }
+            case '&': {
+                if (*this->buffer == '&') {
+                    c_token[index++] = *this->buffer;
+                    this->token = new Token(TokenAndAnd, c_token);
+                    return;
+                } 
+
+                this->token = new Token(TokenAnd, c_token);
+                return;
+            }
+            case '|': {
+                if (*this->buffer == '|') {
+                    c_token[index++] = *this->buffer;
+                    this->token = new Token(TokenOrOr, c_token);
+                    return;
+                } 
+
+                this->token = new Token(TokenOr, c_token);
                 return;
             }
             default: {

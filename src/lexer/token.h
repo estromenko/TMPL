@@ -35,6 +35,18 @@ enum TokenType {
     TokenComma,
     TokenPoint,
     TokenMod,
+    TokenLess,
+    TokenLessEqual,
+    TokenGreater,
+    TokenGreaterEqual,
+    TokenNot,
+    TokenNotEqual,
+    TokenAnd,
+    TokenAndAnd,
+    TokenOr,
+    TokenOrOr,
+    TokenQuote,
+    TokenDoubleQuote,
 
     TokenNumber,    
 
