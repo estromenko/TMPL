@@ -7,7 +7,7 @@ FILES=src/lexer/*.cpp src/parser/*.cpp src/*.cpp
 .all: compile
 
 compile:
-	$(COMPILER) $(FLAGS)-o $(NAME) $(FILES)
+	$(COMPILER) $(FLAGS) -o $(NAME) $(FILES)
 
 clean:
 	rm -rf $(NAME)
